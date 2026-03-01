@@ -1,0 +1,254 @@
+:root{
+  --bg:#070A12;
+  --card:rgba(255,255,255,.06);
+  --line:rgba(255,255,255,.12);
+  --text:#EEF2FF;
+  --muted:#B9C2E3;
+  --accent:#7C3AED;
+  --accent2:#22D3EE;
+  --radius:18px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(900px 600px at 15% 10%, rgba(124,58,237,.35), transparent 60%),
+    radial-gradient(800px 500px at 85% 15%, rgba(34,211,238,.25), transparent 60%),
+    var(--bg);
+  display:flex;
+  justify-content:center;
+  padding:28px 16px;
+}
+
+.app{width:min(720px, 100%)}
+
+.header h1{
+  margin:0;
+  font-size:36px;
+  letter-spacing:-.03em;
+}
+.header p{margin:8px 0 18px; color:var(--muted)}
+
+.card{
+  border:1px solid var(--line);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  border-radius:var(--radius);
+  padding:18px;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+}
+input{
+  flex:1;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.22);
+  color:var(--text);
+  outline:none;
+}
+input::placeholder{color:rgba(185,194,227,.7)}
+button{
+  padding:12px 14px;
+  border-radius:14px;
+  border:0;
+  cursor:pointer;
+  font-weight:700;
+  color:white;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+}
+button.ghost{
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--text);
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:12px 2px 6px;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.list{
+  list-style:none;
+  padding:0;
+  margin:10px 0 0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+}
+
+.left{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex:1;
+}
+
+.check{
+  width:18px;
+  height:18px;
+  accent-color: var(--accent);
+}
+
+.text{
+  color:var(--text);
+  word-break:break-word;
+}
+
+.done .text{
+  text-decoration:line-through;
+  color:rgba(185,194,227,.75);
+}
+
+.del{
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--text);
+  padding:8px 10px;
+  border-radius:12px;
+}
+
+.footer{
+  text-align:center;
+  margin-top:14px;
+  color:rgba(144,160,208,.9);
+}
+
+/* melhora alinhamento geral do item */
+.item{
+  display:flex;
+  align-items:center;          /* centraliza verticalmente */
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.18);
+}
+
+/* garante que lado esquerdo organize bem */
+.left{
+  display:flex;
+  align-items:center;          /* centraliza checkbox e texto */
+  gap:12px;
+  flex:1;
+  min-width:0;                /* evita “quebras estranhas” */
+}
+
+/* deixa checkbox fixo e alinhado */
+.check{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;              /* largura fixa */
+  display:block;
+  margin:0;                   /* remove deslocamentos */
+}
+
+/* texto ocupa o espaço e não empurra o checkbox */
+.text{
+  flex:1;
+  min-width:0;
+  word-break:break-word;
+}
+
+/* botão apagar não fica apertando o texto */
+.del{
+  flex:0 0 auto;
+}
+
+/* animação leve de entrada */
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(8px) scale(.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* hover suave e sombra */
+.item{
+  animation: popIn .18s ease-out both;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.item:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.25);
+  background: rgba(0,0,0,.22);
+}
+button{
+  transition: transform .08s ease, filter .12s ease, opacity .12s ease;
+}
+button:hover{ filter: brightness(1.05); }
+button:active{ transform: translateY(1px) scale(.99); }
+
+.text{
+  transition: color .15s ease, text-decoration-color .15s ease, opacity .15s ease;
+}
+
+.done .text{
+  opacity: .75;
+}
+@media (prefers-reduced-motion: reduce){
+  *{ animation: none !important; transition: none !important; }
+}
+@keyframes shake {
+  0%,100%{ transform: translateX(0); }
+  25%{ transform: translateX(-6px); }
+  75%{ transform: translateX(6px); }
+}
+.shake{ animation: shake .2s ease; }
+
+/* contador com “flip” leve */
+.counter{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+
+.counter .label{
+  color: var(--muted);
+}
+
+.counter .num{
+  display:inline-block;
+  min-width: 2ch;
+  font-weight: 800;
+  color: var(--text);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@keyframes countUp {
+  from { transform: translateY(6px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+@keyframes countDown {
+  from { transform: translateY(-6px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.counter .num.up   { animation: countUp .16s ease-out; }
+.counter .num.down { animation: countDown .16s ease-out; }
+
+@media (prefers-reduced-motion: reduce){
+  .counter .num.up, .counter .num.down { animation: none; }
+}
